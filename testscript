@@ -1,5 +1,0 @@
-#!/bin/bash
-cd /home/rvm/Downloads
-if [ -f *.mp3 ] 
-then cp *.mp3 /home/rvm/Yandex.Disk/downloads
-fi	
