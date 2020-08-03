@@ -1,0 +1,7 @@
+$ xprop | grep -i 'class'
+
+The fist part of the WM_CLASS is the instance, the second part is the class
+
+then in your i3 config file put string:
+
+for_window [class="example"] floating enable
