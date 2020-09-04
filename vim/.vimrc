@@ -1,7 +1,127 @@
-source ~/Projects/dotfiles/vim/vim_config/mapping.vim
-source ~/Projects/dotfiles/vim/vim_config/plugins.vim
-source ~/Projects/dotfiles/vim/vim_config/plugins_config.vim
-source ~/Projects/dotfiles/vim/vim_config/js.vim
-source ~/Projects/dotfiles/vim/vim_config/general.vim
-source ~/Projects/dotfiles/vim/vim_config/features.vim
+set expandtab " замена табов на пробелы
+set smarttab " при нажатии таба добавляет кол-во пробелов = shiftwidth
+set tabstop=4 " кол-во пробелов в обычном табе
+set softtabstop=4 " кол-во пробелов в табе при удалении
+set shiftwidth=4
+set number " нумерация строк
+set foldcolumn=2 " отступ от левого края экрана
+syntax enable " подсветка синтаксиса
+" Плагины
+call plug#begin('~/.vim/bundle') 
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'lyokha/vim-xkbswitch'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mitermayer/vim-prettier'
+call plug#end() 
+" Оформление
+colorscheme gruvbox " тема Gruvebox
+let g:gruvbox_contrast_dark = 'medium' " можно установить soft, medium или hard
+set bg=dark " устанавливает тёмную тему
+let g:airline_powerline_fonts = 1 " включить поддержку Powerline шрифтов
+let g:airline#extensions#keymap#enabled = 0 " не показывать текущий маппинг
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " кастомная графа положения курсора
+let g:Powerline_symbols='unicode' " поддержка unicode
+let g:airline#extensions#xkblayout#enabled = 0 
+set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
+" отключение звуковых эффектов
+set noerrorbells
+set novisualbell
+" поддержка мыши в v режиме
+set mouse=v
+" Команды клавиатуры
+"
+"    nmap - нормальный режим;
+"    vmap - визуальный режим;
+"    omap - режим, когда выбран оператор действия (y,p или d);
+"    cmap - режим командной строки;
+"    imap - режим вставки.
+"    не рекурсивные варианты: noremap, vnoremap, nnoremap, onoremap, cnoremap и inoremap
+let mapleader = "\<SPACE>" " 'пробел' - лидер
+" в режиме вставки
+inoremap jj <ESC> 
+inoremap оо <ESC> 
+inoremap II <Esc>I
+inoremap AA <Esc>A
+inoremap OO <Esc>O
+inoremap HH <Esc>i
+inoremap LL <Esc>l
+" в нормальном режиме
+nmap <F2> <Plug>(coc-rename)
+nmap <leader>w :w<CR>
+nmap <leader>n :bn<CR>
+nmap <leader>b :bp<CR>
+nmap <leader>d :bd<CR>
+nmap <leader>- :res -2<CR>
+nmap <leader>= :res +2<CR>
+nmap <c-j> :term<CR>
+" работа с буфером обмена
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
+" поиск
+set ignorecase " игнорирование регистра при поиске
+set smartcase
+set hlsearch " подсветка при поиске
+set incsearch " первое совпадение при поиске
+" полезное
+filetype plugin indent on " включает определение типа файла, загрузку...
+set encoding=utf-8 " ставит кодировку UTF-8
+set nocompatible " отключает обратную совместимость с Vi
+set guioptions= " отключаем панели прокрутки в GUI
+set showtabline=0 " отключаем панель табов
+set number relativenumber " нумерация строк относительно курсора
+set wrap linebreak nolist " перенос строк по словам
+set textwidth=120 " ширина строки
+set cursorline " подсветка строк
+set backspace=indent,eol,start
+set lbr
+set title titlestring=
+set matchpairs+=<:> " % для перемещения
+" плагин xkb-switch
+let g:XkbSwitchEnabled = 1
+" плагин NERDTreeToggle 
+map <C-n> :NERDTreeToggle<CR>
+autocmd VimEnter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" плагин Prettier
+au FileType javascript setlocal formatprg=prettier
+au FileType javascript.jsx setlocal formatprg=prettier
+au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType scss setlocal formatprg=prettier\ --parser\ css
+au FileType css setlocal formatprg=prettier\ --parser\ css
+" плагин COC
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+" форматирует выделенную область
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected
+" подсветка голубым выделенной области
+highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+" курсор в режиме вставки для xfce4-terminal
+if has("autocmd")
+  au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_IBEAM/' ~/.config/xfce4/terminal/terminalrc"
+  au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+ au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+endif
+" TAB для автоозавершения и выбора
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+ 
