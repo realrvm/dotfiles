@@ -1,3 +1,4 @@
+" табы и отступы
 set expandtab " замена табов на пробелы
 set smarttab " при нажатии таба добавляет кол-во пробелов = shiftwidth
 set tabstop=4 " кол-во пробелов в обычном табе
@@ -18,7 +19,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mitermayer/vim-prettier'
 call plug#end() 
 " Оформление
-colorscheme gruvbox " тема Gruvebox
+colorscheme gruvbox " тема Gruvbox
 let g:gruvbox_contrast_dark = 'medium' " можно установить soft, medium или hard
 set bg=dark " устанавливает тёмную тему
 let g:airline_powerline_fonts = 1 " включить поддержку Powerline шрифтов
@@ -32,7 +33,7 @@ set noerrorbells
 set novisualbell
 " поддержка мыши в v режиме
 set mouse=v
-" Команды клавиатуры
+" команды клавиатуры
 "
 "    nmap - нормальный режим;
 "    vmap - визуальный режим;
@@ -81,6 +82,13 @@ set backspace=indent,eol,start
 set lbr
 set title titlestring=
 set matchpairs+=<:> " % для перемещения
+set splitbelow splitright " открытие новых окон справа  и внизу
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
+" перемещение между окнами
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle 
