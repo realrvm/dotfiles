@@ -18,6 +18,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mitermayer/vim-prettier'
+Plug 'digitaltoad/vim-pug'
 call plug#end() 
 " Оформление
 colorscheme gruvbox " тема Gruvbox
