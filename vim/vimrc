@@ -61,6 +61,8 @@ nmap <leader>d :bd<CR>
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
 nmap <c-j> :term<CR>
+nmap <leader>o o<Esc>
+nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
 " работа с буфером обмена
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
