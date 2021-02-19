@@ -1,0 +1,71 @@
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 842,
+       "width": 1302,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "percent": 0.7,
+    "swallows": [
+       {
+        "class": "^Xfce4-terminal$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "marks": [],
+    "percent": 0.3,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 972,
+               "width": 1280,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "Mozilla Firefox",
+            "percent": 0.7,
+            "swallows": [
+               {
+                "class": "^firefox$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 842,
+               "width": 1302,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "rvm@rvm:~",
+            "percent": 0.3,
+            "swallows": [
+               {
+                "class": "^Xfce4-terminal$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

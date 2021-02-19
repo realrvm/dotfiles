@@ -31,7 +31,7 @@ workspace_auto_back_and_forth yes
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu Regular 15
+font pango:Ubuntu Regular 16
 
 # thin borders
 hide_edge_borders both
@@ -123,6 +123,7 @@ set $ws2 "Terminals "
 set $ws3 "Browser "
 set $ws4 "Files "
 set $ws5 "Mail ✉"
+set $ws6 "6"
 
 #autostart start applications
 #bind program to workspace
@@ -136,7 +137,7 @@ assign [class="Thunar"] $ws4
 for_window [class=Thunar] focus
 assign [class="Thunderbird"] $ws5
 for_window [class=(?i)thunderbird] focus
-assign [class="Evince"] $ws1
+assign [class="Evince"] $ws5
 for_window [class=(?i)evince] focus
 
 # Autostart apps
@@ -148,6 +149,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id yandex-disk start 
 exec --no-startup-id yandex-disk-indicator 
+exec --no-startup-id autokey-gtk
 exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:caps_toggle"
 exec_always --no-startup-id gxkb
 #exec_always --no-startup-id fix_xcursor
@@ -173,6 +175,16 @@ for_window [class="Vlc"] sticky enable
 for_window [class="Zenity"] floating enable
 for_window [class="Zenity"] sticky enable
 
+# use workspaces on different displays:
+# where you have to replace VGA-0/HDMI-0 with the names for your displays 
+# you can get from xrandr command
+workspace $ws1 output HDMI-1
+workspace $ws2 output DVI-I-0
+workspace $ws3 output DVI-I-0
+workspace $ws4 output DVI-I-0
+workspace $ws5 output DVI-I-0
+workspace $ws6 output HDMI-1
+
 # Maximum width for floating windows
 floating_minimum_size 900 x 450
 floating_maximum_size 1800 x 900
@@ -190,6 +202,7 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -197,6 +210,7 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
 
 # place mouse in bottom right corner after booting + keybind for anytime. requires xdotool
 exec --no-startup-id xdotool mousemove 9000 9000
@@ -327,6 +341,7 @@ bindsym $mod+F8 exec mocp --next
 
 # App shortcuts
 bindsym Ctrl+F1 exec "/usr/bin/translator"
+bindsym Ctrl+F2 exec "/usr/bin/start_w6.sh"
 bindsym $mod+w exec "/usr/bin/firefox"
 bindsym $mod+q exec "/usr/bin/qutebrowser"
 bindsym $mod+m exec "/usr/bin/thunderbird-beta"
