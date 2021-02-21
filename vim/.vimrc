@@ -83,6 +83,7 @@ set textwidth=120 " ширина строки
 set cursorline " подсветка строк
 set backspace=indent,eol,start
 set lbr
+set modifiable " позволяет изменять буфер
 set title titlestring=
 set matchpairs+=<:> " % для перемещения
 set splitbelow splitright " открытие новых окон справа  и внизу
