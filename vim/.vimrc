@@ -7,13 +7,13 @@ set softtabstop=4 " кол-во пробелов в табе при удален
 set shiftwidth=4
 set number " нумерация строк
 set foldcolumn=2 " отступ от левого края экрана
-syntax enable " подсветка синтаксиса
+syntax on " подсветка синтаксиса
 " Плагины
 call plug#begin('~/.vim/bundle') 
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
-Plug 'lyokha/vim-xkbswitch'
+"Plug 'lyokha/vim-xkbswitch'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
@@ -98,6 +98,16 @@ let g:XkbSwitchEnabled = 1
 map <C-n> :NERDTreeToggle<CR>
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" проверка орфографии
+map <F8> :setlocal spell spelllang=en<CR>i
+map <C-F8> :setlocal spell spelllang=ru<CR>i
+map <S-F8> :setlocal nospell<CR>i
+highlight clear SpellBad
+highlight SpellBad ctermfg=Red
+highlight clear SpellCap
+highlight SpellCap ctermfg=Blue
+highlight clear SpellLocal
+highlight SpellLocal ctermfg=Green
 " плагин Prettier
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
