@@ -2,9 +2,7 @@
     "type": "script",
     "description": "Insert Date",
     "store": {},
-    "modes": [
-        3
-    ],
+    "modes": [],
     "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
@@ -18,14 +16,11 @@
         "wordChars": "[\\w]"
     },
     "hotkey": {
-        "modifiers": [
-            "<alt>",
-            "<shift>"
-        ],
-        "hotKey": "d"
+        "modifiers": [],
+        "hotKey": null
     },
     "filter": {
-        "regex": "xfce4-terminal.Xfce4-terminal",
+        "regex": null,
         "isRecursive": false
     }
 }

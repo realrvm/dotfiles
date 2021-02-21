@@ -1,8 +1,11 @@
 {
-    "type": "folder",
-    "title": "Addresses",
+    "type": "phrase",
+    "description": "mv m4a",
     "modes": [],
     "usageCount": 0,
+    "prompt": false,
+    "omitTrigger": false,
+    "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [],
@@ -19,5 +22,6 @@
     "filter": {
         "regex": null,
         "isRecursive": false
-    }
+    },
+    "sendMode": "kb"
 }

@@ -54,15 +54,18 @@ inoremap HH <Esc>i
 inoremap LL <Esc>l
 " в нормальном режиме
 nmap <F2> <Plug>(coc-rename)
-nmap <leader>w :w<CR>
-nmap <leader>n :bn<CR>
-nmap <leader>b :bp<CR>
-nmap <leader>d :bd<CR>
+nmap <leader>w :w<CR> " сохранить
+nmap <leader>n :bn<CR> " следующей буфер
+nmap <leader>b :bp<CR> " предыдущий буфер
+nmap <leader>d :bd<CR> " удалить текущий буфер
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
-nmap <c-j> :term<CR>
 nmap <leader>o o<Esc>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
+nmap j gj
+nmap k gk
+vmap j gj
+vmap k gk
 " работа с буфером обмена
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
@@ -83,9 +86,15 @@ set textwidth=120 " ширина строки
 set cursorline " подсветка строк
 set backspace=indent,eol,start
 set lbr
-set modifiable " позволяет изменять буфер
+set noswapfile
+set nobackup
+set nowb
 set title titlestring=
 set matchpairs+=<:> " % для перемещения
+" Open new splits easily
+map vv <C-W>v
+map ss <C-W>s
+map Q  <C-W>q 
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
 " перемещение между окнами
@@ -93,15 +102,14 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-" Быстрое перемещение по тексту
-nmap <C-H> 5h
-nmap <C-J> 5j
-nmap <C-K> 5k
-nmap <C-L> 5l
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle 
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " проверка орфографии

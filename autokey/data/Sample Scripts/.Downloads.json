@@ -1,11 +1,13 @@
 {
-    "type": "phrase",
-    "description": "Third phrase",
-    "modes": [],
+    "type": "script",
+    "description": "Downloads",
+    "store": {},
+    "modes": [
+        3
+    ],
     "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
-    "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [],
@@ -16,12 +18,13 @@
         "wordChars": "[\\w]"
     },
     "hotkey": {
-        "modifiers": [],
-        "hotKey": null
+        "modifiers": [
+            "<ctrl>"
+        ],
+        "hotKey": "<f3>"
     },
     "filter": {
         "regex": null,
         "isRecursive": false
-    },
-    "sendMode": "kb"
+    }
 }

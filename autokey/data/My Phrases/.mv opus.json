@@ -1,18 +1,14 @@
 {
     "type": "phrase",
-    "description": "Home Address",
-    "modes": [
-        1
-    ],
+    "description": "mv opus",
+    "modes": [],
     "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
-        "abbreviations": [
-            "adr"
-        ],
+        "abbreviations": [],
         "backspace": true,
         "ignoreCase": false,
         "immediate": false,
