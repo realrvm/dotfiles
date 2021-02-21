@@ -6,14 +6,14 @@ set tabstop=4 " кол-во пробелов в обычном табе
 set softtabstop=4 " кол-во пробелов в табе при удалении
 set shiftwidth=4
 set number " нумерация строк
-set foldcolumn=2 " отступ от левого края экрана
+set foldcolumn=1 " отступ от левого края экрана
 syntax on " подсветка синтаксиса
 " Плагины
 call plug#begin('~/.vim/bundle') 
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
-"Plug 'lyokha/vim-xkbswitch'
+Plug 'lyokha/vim-xkbswitch'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
@@ -76,7 +76,7 @@ set incsearch " первое совпадение при поиске
 filetype plugin indent on " включает определение типа файла, загрузку...
 set encoding=utf-8 " ставит кодировку UTF-8
 set guioptions= " отключаем панели прокрутки в GUI
-set showtabline=0 " отключаем панель табов
+" set showtabline=0 " отключаем панель табов
 set number relativenumber " нумерация строк относительно курсора
 set wrap linebreak nolist " перенос строк по словам
 set textwidth=120 " ширина строки
@@ -92,6 +92,11 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+" Быстрое перемещение по тексту
+nmap <C-H> 5h
+nmap <C-J> 5j
+nmap <C-K> 5k
+nmap <C-L> 5l
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle 
@@ -99,9 +104,9 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " проверка орфографии
-map <F8> :setlocal spell spelllang=en<CR>i
-map <C-F8> :setlocal spell spelllang=ru<CR>i
-map <S-F8> :setlocal nospell<CR>i
+map <C-F8> :setlocal spell spelllang=en<CR>i
+map <S-F8> :setlocal spell spelllang=ru<CR>i
+map <F8> :setlocal nospell<CR>i
 highlight clear SpellBad
 highlight SpellBad ctermfg=Red
 highlight clear SpellCap
@@ -146,3 +151,66 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
  
+" Задаем собственные функции для назначения имен заголовкам табов 
+    function! MyTabLine()
+        let tabline = ''
+
+" Формируем tabline для каждой вкладки 
+    for i in range(tabpagenr('$'))
+" Подсвечиваем заголовок выбранной в данный момент вкладки.
+                if i + 1 == tabpagenr()
+                    let tabline .= '%#TabLineSel#'
+                else
+                    let tabline .= '%#TabLine#'
+                endif
+
+                " Устанавливаем номер вкладки
+                let tabline .= '%' . (i + 1) . 'T'
+
+                " Получаем имя вкладки
+                let tabline .= ' %{MyTabLabel(' . (i + 1) . ')} |'
+            endfor
+" Формируем tabline для каждой вкладки <--
+
+" Заполняем лишнее пространство
+        let tabline .= '%#TabLineFill#%T'
+
+" Выровненная по правому краю кнопка закрытия вкладки
+        if tabpagenr('$') > 1
+            let tabline .= '%=%#TabLine#%999XX'
+        endif
+
+        return tabline
+    endfunction
+
+    function! MyTabLabel(n)
+        let label = ''
+        let buflist = tabpagebuflist(a:n)
+
+        " Имя файла и номер вкладки
+            let label = substitute(bufname(buflist[tabpagewinnr(a:n) - 1]), '.*/', '', '')
+
+            if label == ''
+                let label = '[No Name]'
+            endif
+
+            let label .= ' (' . a:n . ')'
+
+        " Определяем, есть ли во вкладке хотя бы один
+        " модифицированный буфер.
+            for i in range(len(buflist))
+                if getbufvar(buflist[i], "&modified")
+                    let label = '[+] ' . label
+                    break
+                endif
+            endfor
+
+return label
+endfunction
+
+    function! MyGuiTabLabel()
+        return '%{MyTabLabel(' . tabpagenr() . ')}'
+    endfunction
+
+    set tabline=%!MyTabLine()
+    set guitablabel=%!MyGuiTabLabel()
