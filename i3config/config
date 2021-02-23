@@ -133,6 +133,8 @@ assign [class="(?i)firefox"] $ws3
 for_window [class=(?i)firefox] focus
 assign [class="(?i)qutebrowser"] $ws3
 for_window [class=(?i)qutebrowser] focus
+assign [class="(?i)google-chrome-stable"] $ws3
+for_window [class=(?i)google-chrome-stable] focus
 assign [class="Thunar"] $ws4
 for_window [class=Thunar] focus
 assign [class="Thunderbird"] $ws5
@@ -364,19 +366,19 @@ bindsym $mod+l exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
 # rofi bindings fancy menu
 bindsym $mod+i exec rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
                 
 bindsym F9 exec rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
 
 bindsym $mod+o exec rofi -show window -line-padding 4 \
                 -lines 6 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
 
 bindsym F10 exec rofi -show window -line-padding 4 \
                 -lines 6 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"                
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"                
     
             
 # Set shut down, restart and locking features
@@ -387,9 +389,9 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id /home/rvm/.local/bin/i3exit shutdown, mode "default"
+    bindsym h exec --no-startup-id /usr/bin/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id /usr/bin/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id /usr/bin/i3exit shutdown, mode "default"
 
     # exit system mode: "Enter", "Space" or "Escape"
     bindsym Return mode "default"
