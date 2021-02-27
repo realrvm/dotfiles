@@ -1,4 +1,4 @@
-set nocompatible " отключает обратную совместимость с V0
+set nocompatible " отключает обратную совместимость с vi
 " табы и отступы
 set expandtab " замена табов на пробелы
 set smarttab " при нажатии таба добавляет кол-во пробелов = shiftwidth
@@ -79,7 +79,7 @@ set incsearch " первое совпадение при поиске
 filetype plugin indent on " включает определение типа файла, загрузку...
 set encoding=utf-8 " ставит кодировку UTF-8
 set guioptions= " отключаем панели прокрутки в GUI
-" set showtabline=0 " отключаем панель табов
+set showtabline=0 " отключаем панель табов
 set number relativenumber " нумерация строк относительно курсора
 set wrap linebreak nolist " перенос строк по словам
 set textwidth=120 " ширина строки
@@ -91,8 +91,9 @@ set nobackup
 set nowb
 set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
+hi MatchParen cterm=none ctermbg=green ctermfg=blue " подсветка скобок
 set matchpairs+=<:> " % для перемещения
-" Open new splits easily
+" открытие новых окон
 map vv <C-W>v
 map ss <C-W>s
 map Q  <C-W>q 
