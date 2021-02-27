@@ -1,4 +1,4 @@
-set nocompatible " отключает обратную совместимость с Vi
+set nocompatible " отключает обратную совместимость с V0
 " табы и отступы
 set expandtab " замена табов на пробелы
 set smarttab " при нажатии таба добавляет кол-во пробелов = shiftwidth
@@ -90,7 +90,7 @@ set noswapfile
 set nobackup
 set nowb
 set title titlestring=
-nnoremap <esc> :noh<return><esc> " убирает подсветку при поиске
+nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 set matchpairs+=<:> " % для перемещения
 " Open new splits easily
 map vv <C-W>v
