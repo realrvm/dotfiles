@@ -90,6 +90,7 @@ set noswapfile
 set nobackup
 set nowb
 set title titlestring=
+nnoremap <esc> :noh<return><esc> " убирает подсветку при поиске
 set matchpairs+=<:> " % для перемещения
 " Open new splits easily
 map vv <C-W>v
