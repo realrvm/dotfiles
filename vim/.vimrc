@@ -96,7 +96,7 @@ set nobackup
 set nowb
 set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
-hi MatchParen cterm=none ctermbg=green ctermfg=blue " подсветка скобок
+hi MatchParen cterm=NONE ctermbg=yellow ctermfg=red " подсветка скобок
 set matchpairs+=<:> " % для перемещения
 highlight Comment cterm=italic " шрифт италик для комментирования
 " автоматически удаляет пустые строки в конце файла при сохранении
