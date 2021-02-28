@@ -12,8 +12,8 @@ workspace_layout default
 
 # i3 gaps
 for_window [class="^.*"] border pixel 1
-gaps inner 15
-gaps outer 2
+gaps inner 8
+gaps outer 4
 #smart_gaps on
 smart_borders on
 
@@ -47,8 +47,8 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
-#bindsym $mod+KP_Enter exec xfce4-terminal
+#bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+KP_Enter exec xfce4-terminal
 
 # kill focused window
 bindsym Ctrl+q kill
@@ -149,8 +149,8 @@ exec --no-startup-id picom -cC
 exec --no-startup-id nm-applet
 exec --no-startup-id unclutter
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id yandex-disk start 
-exec --no-startup-id yandex-disk-indicator 
+exec --no-startup-id sleep 5 && yandex-disk start
+exec --no-startup-id sleep 5 && yandex-disk-indicator
 exec --no-startup-id autokey-gtk
 exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:caps_toggle"
 exec_always --no-startup-id gxkb
@@ -178,7 +178,7 @@ for_window [class="Zenity"] floating enable
 for_window [class="Zenity"] sticky enable
 
 # use workspaces on different displays:
-# where you have to replace VGA-0/HDMI-0 with the names for your displays 
+# where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
 workspace $ws1 output HDMI-1
 workspace $ws2 output DVI-I-0
@@ -274,7 +274,7 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 #bar {
 #	status_command i3status
 #	font pango:monospace 9
-#        
+#
 #	colors {
 #		background $bg-color
 #	    	separator #757575
@@ -289,8 +289,8 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 # finds out, if available)
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-tray_output primary 
-    position top 
+tray_output primary
+    position top
     tray_padding 0
     colors {
       separator          #666666
@@ -367,7 +367,7 @@ bindsym $mod+l exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
 bindsym $mod+i exec rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
-                
+
 bindsym F9 exec rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
@@ -378,9 +378,9 @@ bindsym $mod+o exec rofi -show window -line-padding 4 \
 
 bindsym F10 exec rofi -show window -line-padding 4 \
                 -lines 6 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"                
-    
-            
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Ubuntu Regular 16"
+
+
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
@@ -397,5 +397,4 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym space mode "default"
     bindsym Escape mode "default"
-}  
-
+}
