@@ -88,6 +88,7 @@ set showtabline=0 " отключаем панель табов
 set number relativenumber " нумерация строк относительно курсора
 set wrap linebreak nolist " перенос строк по словам
 set textwidth=120 " ширина строки
+set showmatch " переключение с закрывающей скобки на открывающую и обратно
 set cursorline " подсветка строк
 set backspace=indent,eol,start
 set lbr
@@ -124,6 +125,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeIgnore = ['^node_modules$']
 " интеграция git в NERDTree
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
