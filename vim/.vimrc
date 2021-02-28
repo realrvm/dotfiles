@@ -19,6 +19,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mitermayer/vim-prettier'
 Plug 'digitaltoad/vim-pug'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
@@ -67,7 +72,7 @@ nmap k gk
 vmap j gj
 vmap k gk
 " работа с буфером обмена
-inoremap <C-v> <ESC>"+pa
+inoremap <C-v> <ESC> "+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
 " поиск
@@ -93,6 +98,7 @@ set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 hi MatchParen cterm=none ctermbg=green ctermfg=blue " подсветка скобок
 set matchpairs+=<:> " % для перемещения
+highlight Comment cterm=italic " шрифт италик для комментирования
 " автоматически удаляет пустые строки в конце файла при сохранении
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
@@ -118,6 +124,25 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" интеграция git в NERDTree
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+" значки для gitgutter
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
 " проверка орфографии
 map <C-F8> :setlocal spell spelllang=en<CR>i
 map <S-F8> :setlocal spell spelllang=ru<CR>i
