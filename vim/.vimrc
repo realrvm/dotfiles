@@ -9,7 +9,7 @@ set number " нумерация строк
 set foldcolumn=1 " отступ от левого края экрана
 syntax on " подсветка синтаксиса
 " Плагины
-call plug#begin('~/.vim/bundle') 
+call plug#begin('~/.vim/bundle')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -19,7 +19,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mitermayer/vim-prettier'
 Plug 'digitaltoad/vim-pug'
-call plug#end() 
+call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
 let g:gruvbox_contrast_dark = 'medium' " можно установить soft, medium или hard
@@ -28,7 +28,7 @@ let g:airline_powerline_fonts = 1 " включить поддержку Powerlin
 let g:airline#extensions#keymap#enabled = 0 " не показывать текущий маппинг
 let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " кастомная графа положения курсора
 let g:Powerline_symbols='unicode' " поддержка unicode
-let g:airline#extensions#xkblayout#enabled = 0 
+let g:airline#extensions#xkblayout#enabled = 0
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
 " отключение звуковых эффектов
 set noerrorbells
@@ -45,8 +45,8 @@ set mouse=v
 "    не рекурсивные варианты: noremap, vnoremap, nnoremap, onoremap, cnoremap и inoremap
 let mapleader = "\<SPACE>" " 'пробел' - лидер
 " в режиме вставки
-inoremap jj <ESC> 
-inoremap оо <ESC> 
+inoremap jj <ESC>
+inoremap оо <ESC>
 inoremap II <Esc>I
 inoremap AA <Esc>A
 inoremap OO <Esc>O
@@ -93,10 +93,14 @@ set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 hi MatchParen cterm=none ctermbg=green ctermfg=blue " подсветка скобок
 set matchpairs+=<:> " % для перемещения
+" автоматически удаляет пустые строки в конце файла при сохранении
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
 " открытие новых окон
 map vv <C-W>v
 map ss <C-W>s
-map Q  <C-W>q 
+map Q  <C-W>q
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
 " перемещение между окнами
@@ -106,7 +110,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
-" плагин NERDTreeToggle 
+" плагин NERDTreeToggle
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
@@ -136,9 +140,9 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
   \ ]
 " форматирует выделенную область
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -161,12 +165,12 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
- 
-" Задаем собственные функции для назначения имен заголовкам табов 
+
+" Задаем собственные функции для назначения имен заголовкам табов
     function! MyTabLine()
         let tabline = ''
 
-" Формируем tabline для каждой вкладки 
+" Формируем tabline для каждой вкладки
     for i in range(tabpagenr('$'))
 " Подсвечиваем заголовок выбранной в данный момент вкладки.
                 if i + 1 == tabpagenr()
