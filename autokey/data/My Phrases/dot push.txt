@@ -1,0 +1,1 @@
+cd ~/Projects/dotfiles; git add . && git commit -m 'update by autokey' && git push origin master
