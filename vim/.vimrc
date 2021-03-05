@@ -54,7 +54,7 @@ inoremap jj <ESC>
 inoremap оо <ESC>
 inoremap II <Esc>I
 inoremap AA <Esc>A
-inoremap OO <Esc>O
+inoremap OO <cr><Esc>O
 inoremap HH <Esc>i
 inoremap LL <Esc>l
 " в нормальном режиме
@@ -62,10 +62,9 @@ nmap <F2> <Plug>(coc-rename)
 nmap <leader>w :w<CR> " сохранить
 nmap <leader>n :bn<CR> " следующей буфер
 nmap <leader>b :bp<CR> " предыдущий буфер
-nmap <leader>d :bd<CR> " удалить текущий буфер
+nmap <leader>d :bw<CR> " удалить текущий буфер
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
-nmap <leader>o o<Esc>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
 nmap j gj
 nmap k gk
@@ -165,6 +164,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-styled-components',
   \ ]
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
@@ -184,67 +184,3 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-
-" Задаем собственные функции для назначения имен заголовкам табов
-    function! MyTabLine()
-        let tabline = ''
-
-" Формируем tabline для каждой вкладки
-    for i in range(tabpagenr('$'))
-" Подсвечиваем заголовок выбранной в данный момент вкладки.
-                if i + 1 == tabpagenr()
-                    let tabline .= '%#TabLineSel#'
-                else
-                    let tabline .= '%#TabLine#'
-                endif
-
-                " Устанавливаем номер вкладки
-                let tabline .= '%' . (i + 1) . 'T'
-
-                " Получаем имя вкладки
-                let tabline .= ' %{MyTabLabel(' . (i + 1) . ')} |'
-            endfor
-" Формируем tabline для каждой вкладки <--
-
-" Заполняем лишнее пространство
-        let tabline .= '%#TabLineFill#%T'
-
-" Выровненная по правому краю кнопка закрытия вкладки
-        if tabpagenr('$') > 1
-            let tabline .= '%=%#TabLine#%999XX'
-        endif
-
-        return tabline
-    endfunction
-
-    function! MyTabLabel(n)
-        let label = ''
-        let buflist = tabpagebuflist(a:n)
-
-        " Имя файла и номер вкладки
-            let label = substitute(bufname(buflist[tabpagewinnr(a:n) - 1]), '.*/', '', '')
-
-            if label == ''
-                let label = '[No Name]'
-            endif
-
-            let label .= ' (' . a:n . ')'
-
-        " Определяем, есть ли во вкладке хотя бы один
-        " модифицированный буфер.
-            for i in range(len(buflist))
-                if getbufvar(buflist[i], "&modified")
-                    let label = '[+] ' . label
-                    break
-                endif
-            endfor
-
-return label
-endfunction
-
-    function! MyGuiTabLabel()
-        return '%{MyTabLabel(' . tabpagenr() . ')}'
-    endfunction
-
-    set tabline=%!MyTabLine()
-    set guitablabel=%!MyGuiTabLabel()
