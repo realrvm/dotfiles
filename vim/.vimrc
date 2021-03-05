@@ -97,17 +97,12 @@ set nobackup
 set nowb
 set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
-hi MatchParen cterm=NONE ctermbg=yellow ctermfg=red " подсветка скобок
 set matchpairs+=<:> " % для перемещения
 highlight Comment cterm=italic " шрифт италик для комментирования
 " автоматически удаляет пустые строки в конце файла при сохранении
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
-" открытие новых окон
-map vv <C-W>v
-map ss <C-W>s
-map Q  <C-W>q
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
 " перемещение между окнами
@@ -171,9 +166,6 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-json',
   \ ]
-" форматирует выделенную область
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " курсор в режиме вставки для xfce4-terminal
