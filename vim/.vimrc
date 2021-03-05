@@ -24,7 +24,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'luochen1990/rainbow'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
@@ -111,8 +110,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-" плагин rainbow parentheses
-let g:rainbow_active = 1
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle
