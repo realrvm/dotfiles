@@ -28,9 +28,9 @@ Plug 'machakann/vim-highlightedyank'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
-let g:gruvbox_contrast_dark = 'medium' " можно установить soft, medium или hard
-set bg=dark " устанавливает тёмную тему
-let g:airline_powerline_fonts = 1 " включить поддержку Powerline шрифтов
+let g:gruvbox_contrast_dark = 'medium' " soft, medium или hard
+set bg=dark " dark или light
+let g:airline_powerline_fonts = 1 " поддержка Powerline шрифтов
 let g:airline#extensions#keymap#enabled = 0 " не показывать текущий маппинг
 let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " кастомная графа положения курсора
 let g:Powerline_symbols='unicode' " поддержка unicode
@@ -42,7 +42,6 @@ set novisualbell
 " поддержка мыши в v режиме
 set mouse=v
 " команды клавиатуры
-"
 "    nmap - нормальный режим;
 "    vmap - визуальный режим;
 "    omap - режим, когда выбран оператор действия (y,p или d);
@@ -60,13 +59,14 @@ inoremap HH <Esc>i
 inoremap LL <Esc>l
 " в нормальном режиме
 nmap <F2> <Plug>(coc-rename)
-nmap <leader>w :w<CR> " сохранить
+nmap <leader>w :w<CR> " сохранение
 nmap <leader>n :bn<CR> " следующей буфер
 nmap <leader>b :bp<CR> " предыдущий буфер
-nmap <leader>d :bw<CR> " удалить текущий буфер
+nmap <leader>d :bw<CR> " удаление текущего буфера
+" nmap <leader>a :%bd|e#<CR> " закрытие всех буферов, кроме текущего
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
-nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
+nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p> " обновление NERDTree
 nmap j gj
 nmap k gk
 vmap j gj
@@ -82,7 +82,7 @@ set hlsearch " подсветка при поиске
 set incsearch " первое совпадение при поиске
 " полезное
 filetype plugin indent on " включает определение типа файла, загрузку...
-set encoding=utf-8 " ставит кодировку UTF-8
+set encoding=utf-8 " кодировка UTF-8
 set guioptions= " отключаем панели прокрутки в GUI
 set showtabline=0 " отключаем панель табов
 set number relativenumber " нумерация строк относительно курсора

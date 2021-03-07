@@ -25,8 +25,10 @@ alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
 alias p='sudo pacman -Syu'
-alias nb=newsboat
+alias nb='newsboat'
 alias ya="yay -Syu"
+alias g='git'
+alias toCb='xclip -selection clipboard'
 export PATH=/home/rvm/.local/bin:$PATH
 export TERMINAL="xfce4-terminal"
 export BROWSER="firefox"
