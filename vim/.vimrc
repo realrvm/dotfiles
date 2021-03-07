@@ -24,6 +24,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'machakann/vim-highlightedyank'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
