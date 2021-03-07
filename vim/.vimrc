@@ -63,6 +63,7 @@ nmap <leader>w :w<CR> " сохранение
 nmap <leader>n :bn<CR> " следующей буфер
 nmap <leader>b :bp<CR> " предыдущий буфер
 nmap <leader>d :bw<CR> " удаление текущего буфера
+nnoremap . :<C-u>execute "norm! " . repeat(".", v:count1)<CR> " N. - повторение . N раз
 " nmap <leader>a :%bd|e#<CR> " закрытие всех буферов, кроме текущего
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
@@ -110,6 +111,12 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+" выделение * и замена всех совпадений
+nnoremap <Leader>s :%s///g<Left><Left>
+nnoremap <Leader>sc :%s///gc<Left><Left><Left>
+" выделение * и замена всех совпадений выделенной области
+xnoremap <Leader>s :s///g<Left><Left>
+xnoremap <Leader>sc :s///gc<Left><Left><Left>
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle
@@ -175,7 +182,7 @@ if has("autocmd")
   au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
  au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
 endif
-" TAB для автоозавершения и выбора
+" TAB для автозавершения и выбора
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
