@@ -25,6 +25,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'machakann/vim-highlightedyank'
+if exists(':terminal')
+    if has('nvim-0.4.0') || has('patch-8.2.191')
+        Plug 'chengzeyi/multiterm.vim'
+    endif
+endif
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
@@ -128,6 +133,15 @@ let NERDTreeDirArrows = 1
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeIgnore = ['^node_modules$']
+" плагин Multiterm
+nmap <F12> <Plug>(Multiterm)
+tmap <F12> <Plug>(Multiterm)
+imap <F12> <Plug>(Multiterm)
+xmap <F12> <Plug>(Multiterm)
+if !exists('g:multiterm_opts')
+    let g:multiterm_opts = {}
+endif
+let g:multiterm_opts.height = '30'
 " интеграция git в NERDTree
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
