@@ -75,6 +75,8 @@ nnoremap . :<C-u>execute "norm! " . repeat(".", v:count1)<CR> " N. - повто�
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p> " обновление NERDTree
+nmap <Leader>y y$<CR> " копирование от курсора и до конца строки
+nnoremap <Leader>t "=strftime("%c")<CR>P " текущие время и дата
 nmap j gj
 nmap k gk
 vmap j gj
@@ -105,6 +107,7 @@ set lbr
 set noswapfile
 set nobackup
 set nowb
+set hidden " можно переключиться в другой буфер без записи изменений
 set scrolloff=5 " оставляет 5 строчек до и после курсора при прокрутке
 set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
@@ -116,7 +119,7 @@ autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
-" Курсор при открытие файла как при закрытии
+" Курсор на том же самом месте
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
 " перемещение между окнами
@@ -179,6 +182,16 @@ highlight clear SpellCap
 highlight SpellCap ctermfg=Blue
 highlight clear SpellLocal
 highlight SpellLocal ctermfg=Green
+" source vimrc после сохранения
+augroup autosourcing
+    autocmd!
+    autocmd BufWritePost .vimrc,mappings.vim source %
+augroup END
+" динамическая настройка i3config
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end
 " плагин Prettier
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
@@ -215,8 +228,18 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+" плагин fugitive
+nnoremap <leader>gj :diffget //3<CR>
+nnoremap <leader>gf :diffget //2<CR>
+nnoremap <leader>gs :G<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gph :Gpush<CR>
+nnoremap <leader>gpl :Gpull<CR>
+" nnoremap <leader>gc :GBranches<CR>
+" nnoremap <leader>ga :Git fetch --all<CR>
+" nnoremap <leader>grum :Git rebase upstream/master<CR>
+" nnoremap <leader>grom :Git rebase origin/master<CR>
