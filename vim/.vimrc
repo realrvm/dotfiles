@@ -90,6 +90,7 @@ set hlsearch " подсветка при поиске
 set incsearch " первое совпадение при поиске
 " полезное
 syntax on " подсветка синтаксиса
+syntax enable
 filetype plugin indent on " включает определение типа файла, загрузку...
 set encoding=utf-8 " кодировка UTF-8
 set guioptions= " отключаем панели прокрутки в GUI
@@ -114,6 +115,9 @@ autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
+" Курсор при открытие файла как при закрытии
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 " перемещение между окнами
 map <C-h> <C-w>h
 map <C-j> <C-w>j
