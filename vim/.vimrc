@@ -7,7 +7,6 @@ set softtabstop=4 " кол-во пробелов в табе при удален
 set shiftwidth=4
 set number " нумерация строк
 set foldcolumn=1 " отступ от левого края экрана
-syntax on " подсветка синтаксиса
 " Плагины
 call plug#begin('~/.vim/bundle')
 Plug 'morhetz/gruvbox'
@@ -18,11 +17,14 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mitermayer/vim-prettier'
-Plug 'digitaltoad/vim-pug'
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'dNitro/vim-pug-complete', { 'for': ['jade', 'pug'] }
+Plug 'othree/html5.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'machakann/vim-highlightedyank'
 if exists(':terminal')
@@ -87,6 +89,7 @@ set smartcase
 set hlsearch " подсветка при поиске
 set incsearch " первое совпадение при поиске
 " полезное
+syntax on " подсветка синтаксиса
 filetype plugin indent on " включает определение типа файла, загрузку...
 set encoding=utf-8 " кодировка UTF-8
 set guioptions= " отключаем панели прокрутки в GUI
@@ -187,6 +190,8 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-json',
   \ 'coc-styled-components',
+  \ 'coc-html',
+  \ 'coc-tailwindcss',
   \ ]
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
