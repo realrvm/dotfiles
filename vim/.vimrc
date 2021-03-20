@@ -105,6 +105,7 @@ set lbr
 set noswapfile
 set nobackup
 set nowb
+set scrolloff=5 " оставляет 5 строчек до и после курсора при прокрутке
 set title titlestring=
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 set matchpairs+=<:> " % для перемещения
