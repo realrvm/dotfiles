@@ -235,10 +235,10 @@ inoremap <silent><expr> <Tab>
 " плагин fugitive
 nnoremap <leader>gj :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
-nnoremap <leader>gs :G<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gph :Gpush<CR>
-nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gc :G commit<CR>
+nnoremap <leader>gp :G push origin master<CR>
+nnoremap <leader>gpl :G pull origin master<CR>
+nnoremap <leader>ga :G add .<CR>
 " nnoremap <leader>gc :GBranches<CR>
 " nnoremap <leader>ga :Git fetch --all<CR>
 " nnoremap <leader>grum :Git rebase upstream/master<CR>
