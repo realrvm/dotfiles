@@ -134,6 +134,9 @@ nnoremap <Leader>sc :%s///gc<Left><Left><Left>
 " выделение * и замена всех совпадений выделенной области
 xnoremap <Leader>s :s///g<Left><Left>
 xnoremap <Leader>sc :s///gc<Left><Left><Left>
+" абсолютные номера строк в командном режиме
+au CmdLineEnter * set norelativenumber | redraw
+au CmdlineLeave * set relativenumber
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle
