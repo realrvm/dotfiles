@@ -76,6 +76,7 @@ nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p> " обновление NERDTree
 nmap <Leader>y y$<CR> " копирование от курсора и до конца строки
+nmap <Leader>m 50%<CR> " на середину файла
 nnoremap <Leader>t "=strftime("%c")<CR>P " текущие время и дата
 nmap j gj
 nmap k gk
