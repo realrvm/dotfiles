@@ -77,6 +77,7 @@ nmap <leader>= :res +2<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p> " обновление NERDTree
 nmap <Leader>y y$<CR> " копирование от курсора и до конца строки
 nmap <Leader>m 50%<CR> " на середину файла
+nmap <Leader>g bvEUe " слово в верхнем регистре
 nnoremap <Leader>t "=strftime("%c")<CR>P " текущие время и дата
 nmap j gj
 nmap k gk
@@ -137,6 +138,13 @@ xnoremap <Leader>sc :s///gc<Left><Left><Left>
 " абсолютные номера строк в командном режиме
 au CmdLineEnter * set norelativenumber | redraw
 au CmdlineLeave * set relativenumber
+" сохранение истории изменений
+set history=64
+set undolevels=128
+set undodir=~/.vim/undodir/
+set undofile
+set undolevels=1000
+set undoreload=10000
 " плагин xkb-switch
 let g:XkbSwitchEnabled = 1
 " плагин NERDTreeToggle
@@ -247,3 +255,15 @@ nnoremap <leader>ga :G add .<CR>
 " nnoremap <leader>ga :Git fetch --all<CR>
 " nnoremap <leader>grum :Git rebase upstream/master<CR>
 " nnoremap <leader>grom :Git rebase origin/master<CR>
+"test
+function! WriteReactInit()
+    let @q = "
+    \import React from \"react\"\;\n
+    \import styled from \"styled-components\"\;\n
+    \const Element \= \(\) \=> \(\n
+        \<div\>Element component\<\/div\>\n
+    \)\n
+    \export default Element;"
+    execute "0put q"
+endfunction
+autocmd BufNewFile *js call WriteReactInit()
