@@ -239,6 +239,7 @@ endif
 nnoremap <silent> K :call CocAction('doHover')<CR>
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>dx  <Plug>(coc-convert-snippet) " создаёт сниппет выделенной области
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " курсор в режиме вставки для xfce4-terminal
@@ -256,10 +257,12 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+let g:coc_snippet_next = '<tab>'
 " плагин fugitive
 nnoremap <leader>gj :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
