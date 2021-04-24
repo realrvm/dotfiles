@@ -27,6 +27,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'jparise/vim-graphql'
+Plug 'neoclide/coc-eslint'
+Plug 'neoclide/coc-prettier'
 if exists(':terminal')
     if has('nvim-0.4.0') || has('patch-8.2.191')
         Plug 'chengzeyi/multiterm.vim'
@@ -223,6 +230,15 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-tailwindcss',
   \ ]
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+nnoremap <silent> K :call CocAction('doHover')<CR>
+nmap <leader>do <Plug>(coc-codeaction)
+nmap <leader>rn <Plug>(coc-rename)
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " курсор в режиме вставки для xfce4-terminal
@@ -255,15 +271,19 @@ nnoremap <leader>ga :G add .<CR>
 " nnoremap <leader>ga :Git fetch --all<CR>
 " nnoremap <leader>grum :Git rebase upstream/master<CR>
 " nnoremap <leader>grom :Git rebase origin/master<CR>
-"test
-function! WriteReactInit()
-    let @q = "
-    \import React from \"react\"\;\n
-    \import styled from \"styled-components\"\;\n
-    \const Element \= \(\) \=> \(\n
-        \<div\>Element component\<\/div\>\n
-    \)\n
-    \export default Element;"
-    execute "0put q"
-endfunction
-autocmd BufNewFile *js call WriteReactInit()
+" подсветка typescript
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+hi tsxTagName guifg=#E06C75
+hi tsxComponentName guifg=#E06C75
+hi tsxCloseComponentName guifg=#E06C75
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxCloseTagName guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+hi tsxAttrib guifg=#F8BD7F cterm=italic
+hi tsxTypeBraces guifg=#999999
+hi tsxTypes guifg=#666666
+" включение и отключение подстветки
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
