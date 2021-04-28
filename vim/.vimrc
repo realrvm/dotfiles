@@ -239,7 +239,13 @@ endif
 nnoremap <silent> K :call CocAction('doHover')<CR>
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>f   :CocCommand prettier.formatFile<CR>
 xmap <leader>dx  <Plug>(coc-convert-snippet) " создаёт сниппет выделенной области
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 " подсветка голубым выделенной области
 highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " курсор в режиме вставки для xfce4-terminal
@@ -263,7 +269,6 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 " плагин fugitive
 nnoremap <leader>gj :diffget //3<CR>
-nnoremap <leader>gf :diffget //2<CR>
 nnoremap <leader>gc :G commit<CR>
 nnoremap <leader>gp :G push origin master<CR>
 nnoremap <leader>gpl :G pull origin master<CR>
