@@ -302,3 +302,17 @@ hi tsxTypes guifg=#666666
 " включение и отключение подстветки
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" test
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#float#has_scroll() == 0)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(400, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
+set updatetime=1000
