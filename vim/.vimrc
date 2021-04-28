@@ -260,13 +260,22 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 " TAB для автозавершения и выбора
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  let col = col('.') -1
+  return !col || getline('.')[col - 1] =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<Tab>" :
+  \ coc#refresh()
+inoremap <silent><expr> <S-Tab>
+  \ pumvisible() ? "\<C-p>" :
+  \ <SID>check_back_space() ? "\<S-Tab>" :
+  \ coc#refresh()
+inoremap <silent><expr> <CR>
+  \ pumvisible() ? "\<C-y>" :
+  \ "\<C-g>u\<CR>"
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
 " плагин fugitive
 nnoremap <leader>gj :diffget //3<CR>
 nnoremap <leader>gc :G commit<CR>
