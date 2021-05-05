@@ -119,6 +119,7 @@ set nowb
 set hidden " можно переключиться в другой буфер без записи изменений
 set scrolloff=5 " оставляет 5 строчек до и после курсора при прокрутке
 set title titlestring=
+hi MatchParen guifg=lightblue guibg=darkblue
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 set matchpairs+=<:> " % для перемещения
 highlight Comment cterm=italic " шрифт италик для комментирования
@@ -303,16 +304,16 @@ hi tsxTypes guifg=#666666
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " test
-function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#float#has_scroll() == 0)
-    silent call CocActionAsync('doHover')
-  endif
-endfunction
-
-function! s:show_hover_doc()
-  call timer_start(400, 'ShowDocIfNoDiagnostic')
-endfunction
-
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
-set updatetime=1000
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+" It's useful to show the buffer number in the status line.
+set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+:nnoremap <leader>, :ls<CR>
