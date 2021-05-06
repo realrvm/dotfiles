@@ -74,9 +74,6 @@ inoremap LL <Esc>l
 " в нормальном режиме
 nmap <F2> <Plug>(coc-rename)
 nmap <leader>w :w<CR> " сохранение
-nmap <leader>n :bn<CR> " следующей буфер
-nmap <leader>b :bp<CR> " предыдущий буфер
-nmap <leader>d :bw<CR> " удаление текущего буфера
 nnoremap . :<C-u>execute "norm! " . repeat(".", v:count1)<CR> " N. - повторение . N раз
 " nmap <leader>a :%bd|e#<CR> " закрытие всех буферов, кроме текущего
 nmap <leader>- :res -2<CR>
@@ -90,10 +87,32 @@ nmap j gj
 nmap k gk
 vmap j gj
 vmap k gk
+" работа с buffers
+nmap <leader>n :bn<CR> " следующей буфер
+nmap <leader>b :bp<CR> " предыдущий буфер
+nmap <leader>d :bw<CR> " удаление текущего буфера
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+nnoremap <leader>, :ls<CR>
 " работа с буфером обмена
 inoremap <C-v> <ESC> "+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+" включение и отключение подстветки
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" skeletons
+autocmd BufNewFile *.tsx 0r ~/Projects/dotfiles/vim/skeletons/react-typescript.tsx
+autocmd BufNewFile *.html 0r ~/Projects/dotfiles/vim/skeletons/index.html
+autocmd BufNewFile *.sh 0r ~/Projects/dotfiles/vim/skeletons/script.sh
 " поиск
 set ignorecase " игнорирование регистра при поиске
 set smartcase
@@ -102,10 +121,10 @@ set incsearch " первое совпадение при поиске
 " полезное
 syntax on " подсветка синтаксиса
 syntax enable
-filetype plugin indent on " включает определение типа файла, загрузку...
+filetype plugin indent on " включение определение типа файла, загрузку...
 set encoding=utf-8 " кодировка UTF-8
-set guioptions= " отключаем панели прокрутки в GUI
-set showtabline=0 " отключаем панель табов
+set guioptions= " отключение панели прокрутки в GUI
+set showtabline=0 " отключение панель табов
 set number relativenumber " нумерация строк относительно курсора
 set wrap linebreak nolist " перенос строк по словам
 set textwidth=120 " ширина строки
@@ -123,7 +142,7 @@ hi MatchParen guifg=lightblue guibg=darkblue
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 set matchpairs+=<:> " % для перемещения
 highlight Comment cterm=italic " шрифт италик для комментирования
-" автоматически удаляет пустые строки в конце файла при сохранении
+" автоматическое удаление пустых строк в конце файла при сохранении
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
@@ -300,20 +319,3 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 hi tsxTypeBraces guifg=#999999
 hi tsxTypes guifg=#666666
-" включение и отключение подстветки
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-" test
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-" It's useful to show the buffer number in the status line.
-set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-:nnoremap <leader>, :ls<CR>
