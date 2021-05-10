@@ -1,7 +1,7 @@
-set nocompatible " отключает обратную совместимость с vi
+set nocompatible " отключение обратной совместимости с vi
 " табы и отступы
 set expandtab " замена табов на пробелы
-set smarttab " при нажатии таба добавляет кол-во пробелов = shiftwidth
+set smarttab " при нажатии таба добавление пробелов = shiftwidth
 set tabstop=4 " кол-во пробелов в обычном табе
 set softtabstop=4 " кол-во пробелов в табе при удалении
 set shiftwidth=4
@@ -34,11 +34,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc-eslint'
 Plug 'neoclide/coc-prettier'
-if exists(':terminal')
-    if has('nvim-0.4.0') || has('patch-8.2.191')
-        Plug 'chengzeyi/multiterm.vim'
-    endif
-endif
+Plug 'chengzeyi/multiterm.vim'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
@@ -46,15 +42,15 @@ let g:gruvbox_contrast_dark = 'medium' " soft, medium или hard
 set bg=dark " dark или light
 let g:airline_powerline_fonts = 1 " поддержка Powerline шрифтов
 let g:airline#extensions#keymap#enabled = 0 " не показывать текущий маппинг
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " кастомная графа положения курсора
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" " полоска состояния
 let g:Powerline_symbols='unicode' " поддержка unicode
 let g:airline#extensions#xkblayout#enabled = 0
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
 " отключение звуковых эффектов
 set noerrorbells
 set novisualbell
-" поддержка мыши в v режиме
-set mouse=v
+" поддержка мыши везде
+set mouse=a
 " команды клавиатуры
 "    nmap - нормальный режим;
 "    vmap - визуальный режим;
@@ -75,7 +71,6 @@ inoremap LL <Esc>l
 nmap <F2> <Plug>(coc-rename)
 nmap <leader>w :w<CR> " сохранение
 nnoremap . :<C-u>execute "norm! " . repeat(".", v:count1)<CR> " N. - повторение . N раз
-" nmap <leader>a :%bd|e#<CR> " закрытие всех буферов, кроме текущего
 nmap <leader>- :res -2<CR>
 nmap <leader>= :res +2<CR>
 nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p> " обновление NERDTree
@@ -91,17 +86,6 @@ vmap k gk
 nmap <leader>n :bn<CR> " следующей буфер
 nmap <leader>b :bp<CR> " предыдущий буфер
 nmap <leader>d :bw<CR> " удаление текущего буфера
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-nnoremap <leader>, :ls<CR>
 " работа с буфером обмена
 inoremap <C-v> <ESC> "+pa
 vnoremap <C-c> "+y
@@ -136,12 +120,12 @@ set noswapfile
 set nobackup
 set nowb
 set hidden " можно переключиться в другой буфер без записи изменений
-set scrolloff=5 " оставляет 5 строчек до и после курсора при прокрутке
+set scrolloff=2 " 2 строчки до и после курсора при прокрутке
 set title titlestring=
-hi MatchParen guifg=lightblue guibg=darkblue
+hi MatchParen guifg=lightblue guibg=darkblue " подсветка парных скобок
 nnoremap <CR> :noh<CR><CR>  " убирает подсветку после поиска
 set matchpairs+=<:> " % для перемещения
-highlight Comment cterm=italic " шрифт италик для комментирования
+highlight Comment cterm=italic " шрифт италик для комментариев
 " автоматическое удаление пустых строк в конце файла при сохранении
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
@@ -156,12 +140,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-" выделение * и замена всех совпадений
-nnoremap <Leader>s :%s///g<Left><Left>
-nnoremap <Leader>sc :%s///gc<Left><Left><Left>
-" выделение * и замена всех совпадений выделенной области
-xnoremap <Leader>s :s///g<Left><Left>
-xnoremap <Leader>sc :s///gc<Left><Left><Left>
 " абсолютные номера строк в командном режиме
 au CmdLineEnter * set norelativenumber | redraw
 au CmdlineLeave * set relativenumber
