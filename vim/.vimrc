@@ -298,3 +298,5 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 hi tsxTypeBraces guifg=#999999
 hi tsxTypes guifg=#666666
+" автосохранение
+autocmd BufLeave,FocusLost * silent! wall
