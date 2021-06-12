@@ -199,6 +199,8 @@ highlight clear SpellCap
 highlight SpellCap ctermfg=Blue
 highlight clear SpellLocal
 highlight SpellLocal ctermfg=Green
+" автосохранение
+autocmd BufLeave,FocusLost * silent! wall
 " source vimrc после сохранения
 augroup autosourcing
     autocmd!
@@ -298,5 +300,3 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 hi tsxTypeBraces guifg=#999999
 hi tsxTypes guifg=#666666
-" автосохранение
-autocmd BufLeave,FocusLost * silent! wall

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+fileName="/tmp/trans"$(date +%s)".txt"
+
+xsel -o | trans :ru -no-ansi -b -o $fileName
+
+zenity --width=640 --height=480 --title="Перевод" --text-info --filename=$fileName
+
+rm $fileName
+
+exit 0 
