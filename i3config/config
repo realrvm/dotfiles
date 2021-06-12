@@ -118,8 +118,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #workspace-edit
-set $ws1 "1"
-set $ws2 "Terminals "
+set $ws1 "Terminals "
+set $ws2 "2"
 set $ws3 "Browser "
 set $ws4 "Files "
 set $ws5 "Mail ✉"
@@ -127,20 +127,21 @@ set $ws6 "6"
 
 #autostart start applications
 #bind program to workspace
-assign [class="Xfce4-terminal"] $ws2
+assign [class="Xfce4-terminal"] $ws1
 for_window [class=Xfce4-terminal] focus
 assign [class="(?i)firefox"] $ws3
 for_window [class=(?i)firefox] focus
 assign [class="(?i)qutebrowser"] $ws3
 for_window [class=(?i)qutebrowser] focus
-assign [class="(?i)google-chrome-stable"] $ws3
-for_window [class=(?i)google-chrome-stable] focus
 assign [class="Thunar"] $ws4
 for_window [class=Thunar] focus
 assign [class="Thunderbird"] $ws5
 for_window [class=(?i)thunderbird] focus
 assign [class="Evince"] $ws5
 for_window [class=(?i)evince] focus
+assign [class="Google-chrome"] $ws6
+for_window [class=(?i)google-chrome] focus
+
 
 # Autostart apps
 exec --no-startup-id xcompmgr -c
@@ -349,6 +350,7 @@ bindsym $mod+q exec "/usr/bin/qutebrowser"
 bindsym $mod+m exec "/usr/bin/thunderbird-beta"
 bindsym $mod+f exec "/usr/bin/thunar"
 bindsym $mod+c exec "/usr/bin/code"
+bindsym $mod+g exec "/usr/bin/google-chrome-stable"
 bindsym Print exec "scrot ~/%Y-%m%d-%T-screenshot.png"
 
 # Redirect sound to headphones
