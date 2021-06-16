@@ -133,8 +133,8 @@ autocmd BufWritePre *.[ch] %s/\%$/\r/e
 set splitbelow splitright " открытие новых окон справа  и внизу
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " отключение комментирования следующей строки
 " Курсор на том же самом месте
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent! loadview
 " перемещение между окнами
 map <C-h> <C-w>h
 map <C-j> <C-w>j
