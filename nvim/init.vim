@@ -35,6 +35,9 @@ Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc-eslint'
 Plug 'neoclide/coc-prettier'
 Plug 'chengzeyi/multiterm.vim'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 " Оформление
 colorscheme gruvbox " тема Gruvbox
@@ -300,3 +303,17 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 hi tsxTypeBraces guifg=#999999
 hi tsxTypes guifg=#666666
+" запуск подсветки цветов в css, js и прочих
+set termguicolors
+lua require'plug-colorizer'
+" скобки разного цвета
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+autocmd FileType * RainbowParentheses
+" сохранение файлов как sudo
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+" S для поиска
+nnoremap S :%s//g<Left><Left>
+" комментирование
+nnoremap <Leader>/ :Commentary<CR>
+vnoremap <Leader>/ :Commentary<CR>
